@@ -1,0 +1,10 @@
+version: '2'
+services:
+  nodeapi-app:
+    build: .
+    environment:
+      - NODE_ENV=development
+    container_name: nodeapi_app
+    command: /bin/sh -c 'npm i && npm start'
+    ports:
+      - "3000:3000"
