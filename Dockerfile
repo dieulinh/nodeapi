@@ -7,3 +7,6 @@ WORKDIR $APP_DIR
 user node
 COPY --chown=node:node . .
 
+expose 3000
+CMD npm start
+VOLUME /home/node/app

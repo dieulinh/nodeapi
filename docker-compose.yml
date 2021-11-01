@@ -1,10 +1,34 @@
 version: '2'
 services:
-  nodeapi-app:
-    build: .
+  collab_db:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root100
+      - MONGO_INITDB_ROOT_PASSWORD=mysecret100
+    image: mongo:4-bionic
+    container_name: collab_db
+    volumes:
+      - collab_db_data:/data/db
+    ports:
+      - "27018:27017"
+    networks:
+      - collab_net
+  nodeapi_app:
     environment:
       - NODE_ENV=development
+    build:
+      context: ./
+      dockerfile: Dockerfile
     container_name: nodeapi_app
-    command: /bin/sh -c 'npm i && npm start'
+    depends_on:
+      - collab_db
+    command: /bin/sh -c 'npm i && npm run debug'
     ports:
       - "3000:3000"
+    volumes:
+      - ./:/home/node/app
+    networks:
+      - collab_net
+volumes:
+  collab_db_data:
+networks:
+  collab_net:
