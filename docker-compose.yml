@@ -2,14 +2,15 @@ version: '2'
 services:
   collab_db:
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root100
-      - MONGO_INITDB_ROOT_PASSWORD=mysecret100
+      - MONGO_INITDB_DATABASE=codeoperate
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=mysecret
     image: mongo:4-bionic
     container_name: collab_db
     volumes:
       - collab_db_data:/data/db
     ports:
-      - "27018:27017"
+      - "27017:27017"
     networks:
       - collab_net
   nodeapi_app:

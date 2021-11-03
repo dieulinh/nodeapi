@@ -1,12 +1,13 @@
-var express = require('express');
+const cfg = global.cfg = require('./lib/config')(__dirname);
+const express = global.express = require('express');
 const app = express();
 
+app.set('view engine', 'ejs');
 
-app.get('/', (req, res)=> {
-  res.send("OK");
-});
+app.use('/', require('./lib/routes'));
+
 app.get('/hello', (req, res) => {
-  res.send("Hello")
+  res.send('OK', 200)
 })
 console.log("Server Started")
 console.log(process.env.NODE_ENV)

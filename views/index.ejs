@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CodeOperate</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+</head>
+<body>
+
+  <header class="full">
+
+    <h1>CodeOperate</h1>
+
+    <a href="/new" class="button">new</a>
+
+  </header>
+
+  <main class="full">
+
+    <% if (recent && recent.length) { %>
+      <ol id="recent">
+        <% recent.forEach(r => { %>
+          <li><a href="/<%- r._id %>">
+            <h2><%- r.title %></h2>
+
+          </a></li>
+        <% }) %>
+      </ol>
+    <% } %>
+
+  </main>
+
+</body>
+</html>
